@@ -3,6 +3,8 @@ set outputDir ./results
 file mkdir $outputDir
 open_project proj.xpr
 
+synth_ip [get_ips *]
+
 synth_design -top top
 write_checkpoint -force $outputDir/post_synth.dcp
 #report_timing_summary -file $outputDir/post_synth_timing_summary.rpt
