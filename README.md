@@ -1,8 +1,6 @@
-# vivado_tcl
-demo project to show  how to use vivado tcl scripts to do everything.
-
-This methodology has be testind on designs large and small.  TCL scripts
-are a better way to capture compilation flows than clicking around in GUI's.
+This is a demo project to show  how to use vivado tcl scripts to do everything.  This methodology has been 
+tested on designs large and small.  TCL scripts are a better way to capture compilation flows 
+than clicking around in GUI's.
 
 For how to do this with Zynq and Microblaze designs that use the IP Integrator see my other blog posts.
 
@@ -18,7 +16,7 @@ For how to do this with Zynq and Microblaze designs that use the IP Integrator s
 
 1. Get a Vivado TCL shell.  
 
-    In linux you have to source a script called "settings64.sh" or similar then run "vivado -mode tcl".
+    In linux you have to source a script in the Xilinx install directory called "settings64.sh" or similar then run "vivado -mode tcl".
 
     In windows there is a Vivado TCL Shell item in the start menu.
 
@@ -36,12 +34,14 @@ For how to do this with Zynq and Microblaze designs that use the IP Integrator s
 
     "source program_spi.tcl" - This will actually burn the bitfile onto the quad-spi config memory of the board.
 
+    add_ila.tcl  - This script is sourced from inside compile.tcl to add an ILA to the design. Comment out of compile.tcl if not wanted.
+
 
 4. Simulate.
 
     Change director to the ./sim directory.
     
-    "source setup.tcl" - This will create a siimulation project.
+    "source setup.tcl" - This will create a simulation project.
 
     Open the resulting proj.xpr file in windows with the file explorer or in Linux with "vivado proj.xpr".
 
