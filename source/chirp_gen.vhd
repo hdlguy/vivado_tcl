@@ -13,7 +13,7 @@ end chirp_gen;
 
 architecture rtl of chirp_gen is
 
-    const chirp_rate   : unsigned(31 downto 0) := "00000000_00010000_00000000_00000000";
+    constant chirp_rate   : unsigned(31 downto 0) := B"00000000_00010000_00000000_00000000";
     signal phase, freq : unsigned(31 downto 0);
     signal s_axis_phase_tdata : STD_LOGIC_VECTOR(15 DOWNTO 0);
     signal m_axis_data_tdata : STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -25,16 +25,21 @@ begin
     regs_proc:process
     begin
         wait until rising_edge(clk);
-        freq <= freq + chirp_rate;
-        phase <= phase + freq;
+        if reset = '1' then
+            freq  <= (others=>'0');
+            phase <= (others=>'0');
+        else
+            freq  <= freq  + chirp_rate;
+            phase <= phase + freq;
+        end if;
     end process;
 
 
     -- Pack the 12 phase bits into the silly axis bus.
-    s_axis_phase_tdata(11 downto 0) <= phase(phase'left downto phase'left-11); 
+    s_axis_phase_tdata(11 downto 0) <= std_logic_vector(phase(phase'left downto phase'left-11)); 
 
     -- The sine rom IP core.
-    sine_rom_inst : sine_rom
+    sine_rom_inst : entity work.sine_rom
     PORT MAP (
         aclk => clk,
         s_axis_phase_tvalid => '1',

@@ -8,7 +8,7 @@ read_ip [glob ../source/ip/sine_rom/sine_rom.xci ]
 generate_target {all} [get_ips *]
 
 add_files -fileset simset [glob ../source/chirp_gen.vhd]
-add_files -fileset simset [glob ../testbench/chirp_gen_tb.vhd]
+add_files -fileset simset [glob ../source/testbench/chirp_gen_tb.vhd]
 
 current_fileset -simset [ get_filesets simset ]
 
