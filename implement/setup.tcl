@@ -11,7 +11,7 @@ file delete -force ./ip
 file mkdir ./ip
 
 read_ip ../source/ip/sine_rom/sine_rom.xci
-upgrade_ip  [get_ips *]
+upgrade_ip -quiet [get_ips *]
 generate_target {all} [get_ips *]
 
 # Read in the hdl source.
