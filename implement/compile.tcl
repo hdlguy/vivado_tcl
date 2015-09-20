@@ -3,7 +3,7 @@ set outputDir ./results
 file mkdir $outputDir
 open_project proj.xpr
 
-synth_ip [get_ips *]
+synth_ip -force [get_ips *]
 
 synth_design -top top
 write_checkpoint -force $outputDir/post_synth.dcp
